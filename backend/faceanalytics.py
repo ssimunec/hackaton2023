@@ -32,16 +32,17 @@ class FaceAnalytics:
         possible_emotions =list(emotions)
         possible_genders =  list(map(lambda key: key.lower(), genders))
 
-        return age, gender, emotion, possible_genders, possible_emotions
+        return [age, gender, emotion, possible_genders, possible_emotions]
     
     def run(self, source_image_path):
         raw_result = DeepFace.analyze(img_path = source_image_path, 
-            actions = ['age','gender','emotion']
+            actions = ['age','gender','emotion'], enforce_detection=False
         )
 
-        result = self.map_inference_result(raw_result)
-
-        return result
+        if(len(raw_result))>0:
+            return [self.map_inference_result(raw_result)]
+        else:
+            return []
 
 
 

@@ -32,15 +32,6 @@ class PersonDetector:
         size_p =  floor(abs(box[0] - box[2])  * abs(box[1] - box[3]))
         return label, box, score, size_p
     
-    def crop_image(self, inf_result_vec, source_image_path):
-        source_image = Image.open(source_image_path)
-
-        cropped_image = source_image.crop((inf_result_vec[1][0], 
-                            inf_result_vec[1][1], 
-                            inf_result_vec[1][2], 
-                            inf_result_vec[1][3]))
-        return cropped_image
-    
     def take_size(self, element):
         return element[len(element)-1]
 
