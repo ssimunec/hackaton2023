@@ -1,8 +1,8 @@
-from math import floor
-from transformers import YolosImageProcessor, YolosForObjectDetection
-from PIL import Image
 import torch
-import requests
+from math import floor
+from PIL import Image
+from transformers import YolosImageProcessor, YolosForObjectDetection
+
 
 class PersonDetector:
     def __init__(self):

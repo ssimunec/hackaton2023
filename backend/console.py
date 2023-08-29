@@ -1,25 +1,24 @@
 
-from deepface import DeepFace
+from faceanalytics import FaceAnalytics
+from detector import PersonDetector
 
-# import os
-# os.environ["CUDA_VISIBLE_DEVICES"]=""
+source_image_path = "./person1.jpg"
 
-objs = DeepFace.analyze(img_path = "person1.jpg", 
-        actions = ['age','gender','emotion']
-)
+person_detector = PersonDetector()
 
-print(objs)
+inference_result = person_detector.run(source_image_path)
 
-print(objs[0]["age"])
-print(objs[0]["region"]["x"])
+print(inference_result)
 
-genders = objs[0]["gender"]
-gender = max(genders, key=genders.get).lower()
-print(gender)
+closest = person_detector.find_closest(inference_result)
 
-emotions = objs[0]["emotion"]
-emotion = max(emotions, key=emotions.get)
-print(emotion)
+print(closest)
+result_image = person_detector.crop_image(closest, source_image_path)
 
-possible_emotions = list(emotions)
-print(possible_emotions)
+# result_image.show()
+
+fa = FaceAnalytics()
+
+fa_result = fa.run(source_image_path)
+
+print(fa_result)
