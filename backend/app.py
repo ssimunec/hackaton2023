@@ -15,6 +15,10 @@ app.config['MAX_CONTENT_PATH'] = 999999999999
 
 person_detector = PersonDetector()
 
+@app.route('/')
+def root_route():
+   return jsonify({"status": True})
+
 @app.route('/upload')
 def upload():
    return render_template('./upload.html')
@@ -89,4 +93,4 @@ def faceanalytics():
  
 
 if __name__ == '__main__':
-   app.run(debug = True, port=8080)
+   app.run(debug = True, port=8080,host="0.0.0.0")
