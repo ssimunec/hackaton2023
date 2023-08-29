@@ -17,6 +17,11 @@ sudo apt-get update; sudo apt-get install make build-essential libssl-dev zlib1g
     libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \
     libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
 
+sudo apt-get install build-essential python-dev python-setuptools python-pip python-smbus
+sudo apt-get install libncursesw5-dev libgdbm-dev libc6-dev
+sudo apt-get install zlib1g-dev libsqlite3-dev tk-dev
+sudo apt-get install libssl-dev openssl
+sudo apt-get install libffi-dev
 
 # Intallation
 
