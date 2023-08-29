@@ -32,3 +32,20 @@ pip install -r requirements.txt
 
 # Running
 python app.py
+
+# Possible Genders and Sentiments
+
+"genders": [
+    "woman",
+    "man"
+],
+
+"sentiments": [
+    "angry",
+    "disgust",
+    "fear",
+    "happy",
+    "sad",
+    "surprise",
+    "neutral"
+]
