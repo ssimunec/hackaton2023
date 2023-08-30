@@ -6,6 +6,7 @@ from detector import PersonDetector
 from flask_cors import CORS
 
 from faceanalytics import FaceAnalytics
+from recommender import Recommender
 from utils import crop_image, save_image
 
 app = Flask(__name__)
@@ -14,6 +15,8 @@ app.config['UPLOAD_FOLDER'] = "./uploads"
 app.config['MAX_CONTENT_PATH'] = 999999999999
 
 person_detector = PersonDetector()
+faceanalytics_model = FaceAnalytics()
+recommender_model = Recommender()
 
 @app.route('/')
 def root_route():
@@ -71,7 +74,7 @@ def faceanalytics():
 
    save_image(cropped_image, cropped_image_path)
 
-   inference_result = FaceAnalytics().run(source_image_path)
+   inference_result = faceanalytics_model.run(source_image_path)
 
    if(len(inference_result)):
       response = {
@@ -93,5 +96,28 @@ def faceanalytics():
    return jsonify(response)
  
 
+@app.route('/recommend', methods = ['POST'])
+def recommend():
+   json_request = request.json
+   age = json_request["age"]
+   gender = json_request["gender"]
+   sentiment = json_request["sentiment"]
+
+   inference_result =recommender_model.run(age, gender, sentiment)
+
+   if(len(inference_result)):
+      response = {
+         "type": "recommend",
+         "recommend": inference_result,
+         "status": True
+      }
+   else:
+      response = {
+         "type": None,
+         "recommend": None,
+         "status": False
+      } 
+
+   return jsonify(response)
 if __name__ == '__main__':
    app.run(debug = True, port=8080,host="0.0.0.0")
