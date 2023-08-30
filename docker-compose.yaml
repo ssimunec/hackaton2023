@@ -7,7 +7,7 @@ services:
     restart: always
     container_name: hack-backend
     build:
-      context: /backend
+      context: ./backend
       dockerfile: Dockerfile
     networks:
       - project_network
