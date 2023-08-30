@@ -1,0 +1,18 @@
+version: "3.4"
+
+services:
+  backend:
+    ports:
+      - "8084:8080"
+    restart: always
+    container_name: hack-backend
+    build:
+      context: /backend
+      dockerfile: Dockerfile
+    networks:
+      - project_network
+    environment:
+      - PORT=8080
+networks:
+  project_network:
+    driver: bridge
