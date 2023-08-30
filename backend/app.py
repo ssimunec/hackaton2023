@@ -27,7 +27,8 @@ def upload():
 def upload_file():
    if request.method == 'POST':
       f = request.files['file']
-      f.save(os.path.join('./uploads', secure_filename(f.filename)))
+      name = request.form['name']
+      f.save(os.path.join('./uploads', name))
       return 'file uploaded successfully'
 
 
