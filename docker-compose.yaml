@@ -1,7 +1,18 @@
 version: "3.4"
 
 services:
+  # db:
+  #   image: mysql:8.0
+  #   command: --default-authentication-plugin=mysql_native_password
+  #   restart: always
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: root_password
+  #   ports:
+  #     - "3306:3306"
+  #   networks:
+  #     - project_network
   backend:
+    image: ssimunec/hackaton2023-backend
     ports:
       - "8084:8080"
     restart: always
